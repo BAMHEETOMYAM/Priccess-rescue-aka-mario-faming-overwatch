@@ -18,11 +18,7 @@ print("1 : Warrior\n"
 
 classselectlst = ['1','2','3','4']
 
-
-
 classselect = input(": ")
-
-
 
 #Player stat
 playerlevel = 0
@@ -32,7 +28,7 @@ mana = 0
 attack = 0
 specialattk = 0
 userclass = 'none'
-
+monsterkilled = 0
 
 
 # Error catch
@@ -81,6 +77,12 @@ health, mana, attack, specialattk, userclass = playerselectclass()
 
 #call player stat function when player exp hit certain playerexp
 def playerstats():
+    global playerexp
+    global playerlevel
+    global health
+    global mana
+    global attack
+    global specialattk
     #Warrior class lv 1-10
     if userclass == "Warrior":
         if playerexp > 900:
@@ -396,17 +398,7 @@ def playerstats():
             return playerlevel,health,mana,attack,specialattk
 
 
-
-
-
-
-
-
-
-
-
-playerlevel,health,mana,attack,specialattk = playerstats()
-
+playerlevel, health, mana, attack, specialattk = playerstats()
 
 
 print("Welcome again", user ,"The",userclass)
@@ -418,11 +410,720 @@ print("There will be a ton of monster in this world you will need to preapare yo
 
 worldselect = input("Select your world by number: ")
 
-#Farmworld
+#Farmworld set up
 worldlevel = 0
-slimehealth = 20
+
+#creaturn in Farmworld
+'''
+bat = 10
+slime = 20
+boar = 30
 Werewolf = 40
+skeleton = 50
+ghost = 60
+leech = 70
+wraith = 80
+'''
+#creaturn in campaignworld
+'''
 Troll = 100
+DarkElves
+'''
+
+
+def spawnbat():
+    global bathealth
+    global batattk
+    global batexp
+    bathealth = 10
+    batattk = 5
+    batexp = 2
+    return bathealth, batattk, batexp
+
+def combatbat():
+    global bathealth
+    global health
+    global mana
+    print("Bathealth : ", bathealth)
+    print("PlayerHealth : ", health)
+    print("PlayerMana : ", mana)
+
+def spawnSlime():
+    global slimehealth
+    global slimeattk
+    global slimeexp
+    slimehealth = 20
+    slimeattk = 10
+    slimeexp = 4
+    return slimehealth, slimeexp, slimeattk
+
+def combatSlime():
+    global slimehealth
+    global health
+    global mana
+    print("Slimehealth : ", slimehealth)
+    print("PlayerHealth : ", health)
+    print("PlayerMana : ", mana)
+
+def spawnBoar():
+    global boarhealth
+    global boarattk
+    global boarexp
+    boarhealth = 30
+    boarattk = 15
+    boarexp = 8
+    return boarhealth, boarexp, boarattk
+
+def combatBoar():
+    global boarhealth
+    global health
+    global mana
+    print("Boarhealth : ", boarhealth)
+    print("PlayerHealth : ", health)
+    print("PlayerMana : ", mana)
+
+def spawnWerewolf():
+    global werewolfhealth
+    global werewolfattk
+    global werewolfexp
+    werewolfhealth = 40
+    werewolfattk = 20
+    werewolfexp = 10
+    return werewolfhealth, werewolfexp, werewolfattk
+
+def combatWerewolf():
+    global werewolfhealth
+    global health
+    global mana
+    print("Werewolfhealth : ", werewolfhealth)
+    print("PlayerHealth : ", health)
+    print("PlayerMana : ", mana)
+
+def spawnSkeleton():
+    global Skeletonhealth
+    global Skeletonattk
+    global Skeletonexp
+    Skeletonhealth = 50
+    Skeletonattk = 25
+    Skeletonexp = 15
+    return Skeletonhealth, Skeletonattk, Skeletonexp
+
+def combatSkeleton():
+    global Skeletonhealth
+    global health
+    global mana
+    print("Skeletonhealth : ", Skeletonhealth)
+    print("PlayerHealth : ", health)
+    print("PlayerMana : ", mana)
+
+def spawnWraith():
+    global Wraithhealth
+    global Wraithattk
+    global Wraithexp
+    Wraithhealth = 60
+    Wraithattk = 30
+    Wraithexp = 20
+    return Wraithhealth, Wraithattk, Wraithexp
+
+def combatWraith():
+    global Wraithhealth
+    global health
+    global mana
+    print("Wraithhealth : ", Wraithhealth)
+    print("PlayerHealth : ", health)
+    print("PlayerMana : ", mana)
+
+def spawnTroll():
+    global Trollhealth
+    global Trollattk
+    global Trollexp
+    Trollhealth = 70
+    Trollattk = 35
+    Trollexp = 25
+    return Trollhealth, Trollattk, Trollexp
+
+def combatTroll():
+    global Trollhealth
+    global health
+    global mana
+    print("Trollhealth : ", Trollhealth)
+    print("PlayerHealth : ", health)
+    print("PlayerMana : ", mana)
+
+def spawnDarkElves():
+    global DarkElveshealth
+    global DarkElvesattk
+    global DarkElvesexp
+    DarkElveshealth = 80
+    DarkElvesattk = 40
+    DarkElvesexp = 30
+    return DarkElveshealth, DarkElvesattk, DarkElvesexp
+
+def combatDarkElves():
+    global DarkElveshealth
+    global health
+    global mana
+    print("DarkElveshealth : ", DarkElveshealth)
+    print("PlayerHealth : ", health)
+    print("PlayerMana : ", mana)
+
+
+#Farmworld leveling
+if worldselect == '1':
+    print("Wise choice Hero Let us leveling here first before fight the Dark Elves\n"
+          "Here is Where you can leveling all you want and it will also have a world level to chose the difficulty\n"
+          "==========================================================")
+
+    worldlevel = input("Select your world difficulty 0-4\n"
+                       ": ")
+elif worldselect == '2':
+    print("It is too soon till you challenge the DarkElves Go Leveling First!\n"
+          "Here is Where you can leveling all you want and it will also have a world level to chose the difficulty\n"
+          "==========================================================")
+
+    worldlevel = input("Select your world difficulty in Farm world 0-4\n"
+                       ": ")
+else:
+    print("Please run program again did not make error catch in this function")
+
+#Farmworld farming loop
+def worldloop0():
+     global bathealth
+     global playerexp
+     global health
+     global mana
+     global monsterkilled
+     playerlevel, health, mana, attack, specialattk = playerstats()
+
+     bathealth, batattk, batexp = spawnbat()
+
+     global worldlevel
+     print("Your current world level is", worldlevel)
+
+     print("**********************************************************\n"
+           "BAT APPROCHING\n"
+           "**********************************************************\n")
+     while (True):
+
+          if bathealth > 0:
+               choice = input("Enter your move \n"
+                              "1 for 'Attack'\n"
+                              "2 for 'Special Attack'\n"
+                              ": ")
+
+               if choice == "1":
+                    bathealth = bathealth - attack
+                    health = health - batattk
+                    combatbat()
+
+               elif choice == "2":
+                   if mana > 0:
+                        bathealth = bathealth - specialattk
+                        health = health - batattk
+                        mana = mana - 1
+                        combatbat()
+                   elif mana <= 0:
+                        print("Not enough mana")
+                        combatbat()
+
+          if bathealth <= 0:
+               playerexp = playerexp + batexp
+               print("Player exp gain : ", batexp)
+               print("Player current exp : ", playerexp)
+               monsterkilled = monsterkilled + 1
+               # Check player exp to level up player when hit certain level
+               playerlevel, health, mana, attack, specialattk = playerstats()
+               print("===================================")
+               worldlevel = input("Enter world dificaulty 0-5\n"
+                                  ": ")
+               if worldlevel == "0":
+                    worldloop0()
+               elif worldlevel == "1":
+                    worldloop1()
+               elif worldlevel == "2":
+                    worldloop2()
+               elif worldlevel == "3":
+                    worldloop3()
+               elif worldlevel == "4":
+                    worldloop4()
+               elif worldlevel == "5":
+                    worldloop5()
+
+          if health <= 0:
+               print("WASTED PLEASE RUN PROGRAM AGAIN(YOU DIED)")
+               break
+
+
+def worldloop1():
+    global slimehealth
+    global playerexp
+    global health
+    global mana
+    global monsterkilled
+    playerlevel, health, mana, attack, specialattk = playerstats()
+
+    slimehealth, slimeexp, slimeattk = spawnSlime()
+
+    global worldlevel
+    print("Your current world level is", worldlevel)
+
+    print("**********************************************************\n"
+          "SLIME APPROCHING\n"
+          "**********************************************************\n")
+    while (True):
+
+        if slimehealth > 0:
+            choice = input("Enter your move \n"
+                           "1 for 'Attack'\n"
+                           "2 for 'Special Attack'\n"
+                           ": ")
+
+            if choice == "1":
+                slimehealth = slimehealth - attack
+                health = health - slimeattk
+                combatSlime()
+
+            elif choice == "2":
+                if mana > 0:
+                    slimehealth = slimehealth - specialattk
+                    health = health - slimeattk
+                    mana = mana - 1
+                    combatSlime()
+                elif mana <= 0:
+                    print("Not enough mana")
+                    combatSlime()
+
+        if slimehealth <= 0:
+            playerexp = playerexp + slimeexp
+            print("Player exp gain : ", slimeexp)
+            print("Player current exp : ", playerexp)
+            monsterkilled = monsterkilled + 1
+            # Check player exp to level up player when hit certain level
+            playerlevel, health, mana, attack, specialattk = playerstats()
+            print("===================================")
+            worldlevel = input("Enter world dificaulty 0-5\n"
+                               ": ")
+            if worldlevel == "0":
+                worldloop0()
+            elif worldlevel == "1":
+                worldloop1()
+            elif worldlevel == "2":
+                worldloop2()
+            elif worldlevel == "3":
+                worldloop3()
+            elif worldlevel == "4":
+                worldloop4()
+            elif worldlevel == "5":
+                worldloop5()
+
+        if health <= 0:
+            print("WASTED PLEASE RUN PROGRAM AGAIN(YOU DIED)")
+            break
+
+
+def worldloop2():
+    global boarhealth
+    global playerexp
+    global health
+    global mana
+    global monsterkilled
+    playerlevel, health, mana, attack, specialattk = playerstats()
+
+    boarhealth, boarexp, boarattk = spawnBoar()
+
+    global worldlevel
+    print("Your current world level is", worldlevel)
+
+    print("**********************************************************\n"
+          "BOAR APPROCHING\n"
+          "**********************************************************\n")
+    while (True):
+
+        if boarhealth > 0:
+            choice = input("Enter your move \n"
+                           "1 for 'Attack'\n"
+                           "2 for 'Special Attack'\n"
+                           ": ")
+
+            if choice == "1":
+                boarhealth = boarhealth - attack
+                health = health - boarattk
+                combatBoar()
+
+            elif choice == "2":
+                if mana > 0:
+                    boarhealth = boarhealth - specialattk
+                    health = health - boarattk
+                    mana = mana - 1
+                    combatBoar()
+                elif mana <= 0:
+                    print("Not enough mana")
+                    combatBoar()
+
+        if boarhealth <= 0:
+            playerexp = playerexp + boarexp
+            print("Player exp gain : ", boarexp)
+            print("Player current exp : ", playerexp)
+            monsterkilled = monsterkilled + 1
+            # Check player exp to level up player when hit certain level
+            playerlevel, health, mana, attack, specialattk = playerstats()
+            print("===================================")
+            worldlevel = input("Enter world difficulty 0-5\n"
+                               ": ")
+            if worldlevel == "0":
+                worldloop0()
+            elif worldlevel == "1":
+                worldloop1()
+            elif worldlevel == "2":
+                worldloop2()
+            elif worldlevel == "3":
+                worldloop3()
+            elif worldlevel == "4":
+                worldloop4()
+            elif worldlevel == "5":
+                worldloop5()
+
+        if health <= 0:
+            print("WASTED PLEASE RUN PROGRAM AGAIN(YOU DIED)")
+            break
+
+
+def worldloop3():
+    global werewolfhealth
+    global playerexp
+    global health
+    global mana
+    global monsterkilled
+    playerlevel, health, mana, attack, specialattk = playerstats()
+
+    werewolfhealth, werewolfexp, werewolfattk = spawnWerewolf()
+
+    global worldlevel
+    print("Your current world level is", worldlevel)
+
+    print("**********************************************************\n"
+          "WEREWOLF APPROCHING\n"
+          "**********************************************************\n")
+    while (True):
+
+        if werewolfhealth > 0:
+            choice = input("Enter your move \n"
+                           "1 for 'Attack'\n"
+                           "2 for 'Special Attack'\n"
+                           ": ")
+
+            if choice == "1":
+                werewolfhealth = werewolfhealth - attack
+                health = health - werewolfattk
+                combatWerewolf()
+
+            elif choice == "2":
+                if mana > 0:
+                    werewolfhealth = werewolfhealth - specialattk
+                    health = health - werewolfattk
+                    mana = mana - 1
+                    combatWerewolf()
+                elif mana <= 0:
+                    print("Not enough mana")
+                    combatWerewolf()
+
+        if werewolfhealth <= 0:
+            playerexp = playerexp + werewolfexp
+            print("Player exp gain : ", werewolfexp)
+            print("Player current exp : ", playerexp)
+            monsterkilled = monsterkilled + 1
+            # Check player exp to level up player when hit certain level
+            playerlevel, health, mana, attack, specialattk = playerstats()
+            print("===================================")
+            worldlevel = input("Enter world difficulty 0-5\n"
+                               ": ")
+            if worldlevel == "0":
+                worldloop0()
+            elif worldlevel == "1":
+                worldloop1()
+            elif worldlevel == "2":
+                worldloop2()
+            elif worldlevel == "3":
+                worldloop3()
+            elif worldlevel == "4":
+                worldloop4()
+            elif worldlevel == "5":
+                worldloop5()
+
+        if health <= 0:
+            print("WASTED PLEASE RUN PROGRAM AGAIN(YOU DIED)")
+            break
+
+
+def worldloop4():
+    global Skeletonhealth
+    global playerexp
+    global health
+    global mana
+    global monsterkilled
+    playerlevel, health, mana, attack, specialattk = playerstats()
+
+    Skeletonhealth, Skeletonattk, Skeletonexp = spawnSkeleton()
+
+    global worldlevel
+    print("Your current world level is", worldlevel)
+
+    print("**********************************************************\n"
+          "SKELETON APPROCHING\n"
+          "**********************************************************\n")
+    while (True):
+
+        if Skeletonhealth > 0:
+            choice = input("Enter your move \n"
+                           "1 for 'Attack'\n"
+                           "2 for 'Special Attack'\n"
+                           ": ")
+
+            if choice == "1":
+                Skeletonhealth = Skeletonhealth - attack
+                health = health - Skeletonattk
+                combatSkeleton()
+
+            elif choice == "2":
+                if mana > 0:
+                    Skeletonhealth = Skeletonhealth - specialattk
+                    health = health - Skeletonattk
+                    mana = mana - 1
+                    combatSkeleton()
+                elif mana <= 0:
+                    print("Not enough mana")
+                    combatSkeleton()
+
+        if Skeletonhealth <= 0:
+            playerexp = playerexp + Skeletonexp
+            print("Player exp gain : ", Skeletonexp)
+            print("Player current exp : ", playerexp)
+            monsterkilled = monsterkilled + 1
+            # Check player exp to level up player when hit certain level
+            playerlevel, health, mana, attack, specialattk = playerstats()
+            print("===================================")
+            worldlevel = input("Enter world difficulty 0-5\n"
+                               ": ")
+            if worldlevel == "0":
+                worldloop0()
+            elif worldlevel == "1":
+                worldloop1()
+            elif worldlevel == "2":
+                worldloop2()
+            elif worldlevel == "3":
+                worldloop3()
+            elif worldlevel == "4":
+                worldloop4()
+            elif worldlevel == "5":
+                worldloop5()
+
+        if health <= 0:
+            print("WASTED PLEASE RUN PROGRAM AGAIN(YOU DIED)")
+            break
+
+
+def worldloop5():
+    global Wraithhealth
+    global playerexp
+    global health
+    global mana
+    global monsterkilled
+    playerlevel, health, mana, attack, specialattk = playerstats()
+
+    Wraithhealth, Wraithattk, Wraithexp = spawnWraith()
+
+    global worldlevel
+    print("Your current world level is", worldlevel)
+
+    print("**********************************************************\n"
+          "WRAITH APPROCHING\n"
+          "**********************************************************\n")
+    while (True):
+
+        if Wraithhealth > 0:
+            choice = input("Enter your move \n"
+                           "1 for 'Attack'\n"
+                           "2 for 'Special Attack'\n"
+                           ": ")
+
+            if choice == "1":
+                Wraithhealth = Wraithhealth - attack
+                health = health - Wraithattk
+                combatWraith()
+
+            elif choice == "2":
+                if mana > 0:
+                    Wraithhealth = Wraithhealth - specialattk
+                    health = health - Wraithattk
+                    mana = mana - 1
+                    combatWraith()
+                elif mana <= 0:
+                    print("Not enough mana")
+                    combatWraith()
+
+        if Wraithhealth <= 0:
+            playerexp = playerexp + Wraithexp
+            print("Player exp gain : ", Wraithexp)
+            print("Player current exp : ", playerexp)
+            monsterkilled = monsterkilled + 1
+            # Check player exp to level up player when hit certain level
+            playerlevel, health, mana, attack, specialattk = playerstats()
+            print("===================================")
+            worldselect = input("Now that you have defeated the Final Boss In the Farm World Now Its Time to challenge CampaignWorld\n"
+                               "Enter world select\n"
+                               "1 : FarmWorld(Where you can farm your level)\n"
+                               "2 : CampaignWorld(Where you can go defeat DarkElves and rescue princess)\n"
+                               "==========================================================\n"
+                               ": ")
+            if worldselect == "1":
+                worldloop0()
+            elif worldselect == "2":
+                CampaignWorld0()
+
+
+        if health <= 0:
+            print("WASTED PLEASE RUN PROGRAM AGAIN(YOU DIED)")
+            break
+
+
+def CampaignWorld0():
+    global Trollhealth
+    global playerexp
+    global health
+    global mana
+    global monsterkilled
+    playerlevel, health, mana, attack, specialattk = playerstats()
+
+    Trollhealth, Trollattk, Trollexp = spawnTroll()
+
+    global worldlevel
+    print("Your current world level is", worldlevel)
+
+    print("**********************************************************\n"
+          "TROLL APPROCHING\n"
+          "**********************************************************\n")
+    while (True):
+
+        if Trollhealth > 0:
+            choice = input("Enter your move \n"
+                           "1 for 'Attack'\n"
+                           "2 for 'Special Attack'\n"
+                           ": ")
+
+            if choice == "1":
+                Trollhealth = Trollhealth - attack
+                health = health - Trollattk
+                combatTroll()
+
+            elif choice == "2":
+                if mana > 0:
+                    Trollhealth = Trollhealth - specialattk
+                    health = health - Trollattk
+                    mana = mana - 1
+                    combatTroll()
+                elif mana <= 0:
+                    print("Not enough mana")
+                    combatTroll()
+
+        if Trollhealth <= 0:
+            playerexp = playerexp + Trollexp
+            print("Player exp gain : ", Trollexp)
+            print("Player current exp : ", playerexp)
+            monsterkilled = monsterkilled + 1
+            # Check player exp to level up player when hit certain level
+            playerlevel, health, mana, attack, specialattk = playerstats()
+            print("===================================")
+            worldlevel = input("Enter world difficulty 0-1 If you choose 1 it will be the time you can defeat the Final Boss\n"
+                               ": ")
+            if worldlevel == "0":
+                CampaignWorld0()
+            elif worldlevel == "1":
+                CampaignWorld1()
+
+
+        if health <= 0:
+            print("WASTED PLEASE RUN PROGRAM AGAIN(YOU DIED)")
+            break
+
+def CampaignWorld1():
+    global DarkElveshealth
+    global playerexp
+    global health
+    global mana
+    global monsterkilled
+    playerlevel, health, mana, attack, specialattk = playerstats()
+
+    DarkElveshealth, DarkElvesattk, DarkElvesexp = spawnDarkElves()
+
+    global worldlevel
+    print("Your current world level is", worldlevel)
+
+    print("**********************************************************\n"
+          "DARK ELVES APPROCHING\n"
+          "**********************************************************\n")
+    while (True):
+
+        if DarkElveshealth > 0:
+            choice = input("Enter your move \n"
+                           "1 for 'Attack'\n"
+                           "2 for 'Special Attack'\n"
+                           ": ")
+
+            if choice == "1":
+                DarkElveshealth = DarkElveshealth - attack
+                health = health - DarkElvesattk
+                combatDarkElves()
+
+            elif choice == "2":
+                if mana > 0:
+                    DarkElveshealth = DarkElveshealth - specialattk
+                    health = health - DarkElvesattk
+                    mana = mana - 1
+                    combatDarkElves()
+                elif mana <= 0:
+                    print("Not enough mana")
+                    combatDarkElves()
+
+        if DarkElveshealth <= 0:
+            playerexp = playerexp + DarkElvesexp
+            print("Player exp gain : ", DarkElvesexp)
+            print("Player current exp : ", playerexp)
+            monsterkilled = monsterkilled + 1
+            # Check player exp to level up player when hit certain level
+            playerlevel, health, mana, attack, specialattk = playerstats()
+            print("===================================")
+            print("CONGRATULATION YOU HAVE BEAT THE GAME THANKS FOR PLAYING\n ", user ,"\nCREDIT : JIRATEEP TANAPRASERTSONG 1640704050 127B No.2")
+
+
+
+            f = open("playerstat.txt", "w")
+            f.write("CREDIT : JIRATEEP TANAPRASERTSONG 1640704050 127B No.2")
+            f.close()
+
+            quit()
+
+
+
+        if health <= 0:
+            print("WASTED PLEASE RUN PROGRAM AGAIN(YOU DIED)")
+            break
+
+
+
+#Make it stay inside loop
+if worldlevel == "0":
+    worldloop0()
+elif worldlevel == "1":
+    worldloop1()
+elif worldlevel == "2":
+    worldloop2()
+elif worldlevel == "3":
+    worldloop3()
+elif worldlevel == "4":
+    worldloop4()
+elif worldlevel == "5":
+    worldloop5()
+
 
 
 
